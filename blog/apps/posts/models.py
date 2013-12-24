@@ -26,7 +26,7 @@ class Post(models.Model):
 	summary = models.CharField(u'Resumo', max_length=255)
 	content = models.TextField(u'Conteudo')
 	tags = TaggableManager()
-	image = models.ImageField(u'Imagem', upload_to='%y/%m/%d/posts')
+	image = models.ImageField(u'Imagem', upload_to='/posts/%Y/%m/%d')
 	author = models.CharField(u'Autor', max_length=100)
 	status = models.CharField(u'Status', choices=STATUS_CHOICES, max_length=10)
 	is_highlight = models.BooleanField(u'E destaque', default=False)

@@ -29,11 +29,11 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
-    {% autopaginate posts 9 %}
+    {% autopaginate posts 10 %}
 
     <div class="row">
       {% for post in posts %}
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <h2>{{ post.title }}</h2>  
           <small>Postado por <span class='text-primary'>{{ post.author }}</span> em &nbsp<span class="glyphicon glyphicon-calendar"></span> {{ post.creation_date|date:"d/m/Y"}}</small>        
           <p>{{ post.summary }}</p>

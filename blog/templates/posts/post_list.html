@@ -9,13 +9,12 @@
 {% autopaginate posts 6 %}
 {% for post in posts %}
 <div class="row">
-  <div class="col-xs-6 col-md-3">
-    <div class="thumbnail">
-    	{% thumbnail post.image 300x200 crop as imagem %}
-      <img src="{{ MEDIA_URL }}{{ imagem }}" alt="{{ post.title }}">      
+  <div class="col-xs-6 col-md-4">
+    <div class="thumbnail">    	
+      <img src="{{ post.image.url }}" alt="{{ post.title }}">      
     </div>
   </div>
-  <div>
+  <div class='row-content-margin'>
   	<h4>{{ post.title }}</h4>
   	<p>{{ post.content|truncatewords:"60" }}</p>
   	<p><a class="btn btn-sm btn-primary" href="{% url 'post_detail' post.slug %}" role="button">Leia mais</a></p>

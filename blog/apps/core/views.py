@@ -14,4 +14,5 @@ def index(request):
 def search(request):
 	form = PostSearchForm(request.GET)
 	posts = form.search()	
-	return render_to_response('search/search_result.html', {'posts': posts})
+	print posts
+	return render_to_response('search/search_result.html', {'posts': posts}, context_instance=RequestContext(request))

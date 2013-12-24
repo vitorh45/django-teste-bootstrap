@@ -10,9 +10,14 @@ class PostIndex(indexes.SearchIndex, indexes.Indexable):
     content = indexes.CharField(model_attr='content')
     author = indexes.CharField(model_attr='author')
     category = indexes.CharField(model_attr='category')
+    image = indexes.CharField(model_attr='image')
+    creation_date = indexes.DateTimeField(model_attr='creation_date')
 
     def prepare_category(self, obj):
     	return obj.category.name
+
+    def prepare_image(self, obj):
+    	return obj.image.url
 
     def get_model(self):
         return Post

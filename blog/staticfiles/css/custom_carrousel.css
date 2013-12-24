@@ -8,6 +8,9 @@ body {
   color: #5a5a5a;
 }
 
+.jumbotron {
+  background-color: #ADD8E6;
+}
 .container {
   width:75%;
 }
@@ -120,6 +123,12 @@ body {
 /* captcha */
 .captcha-input {
   margin-top: 10px;
+}
+
+/*lista de posts */
+
+.row-content-margin {
+  margin-top: -9px;  
 }
 
 /* RESPONSIVE CSS
