@@ -1,0 +1,18 @@
+{% if is_paginated %}
+{% load i18n %}
+<div class='text-center'>
+<ul class="pagination">    
+    {% for page in pages %}
+        {% if page %}
+            {% ifequal page page_obj.number %}
+                <li class="active"><span>{{ page }}</span></li>
+            {% else %}
+                <li><a href="?page={{ page }}{{ getvars }}{{ hashtag }}" class="page">{{ page }}</a></li>
+            {% endifequal %}
+        {% else %}
+            <li><span>...</span></li>
+        {% endif %}
+    {% endfor %}    
+</ul>
+</div>
+{% endif %}

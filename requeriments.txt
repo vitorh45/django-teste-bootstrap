@@ -1,0 +1,11 @@
+django
+south
+easy_thumbnails
+django-autoslug
+pyelasticsearch
+django-haystack
+django-grappelli
+django-taggit
+pillow
+django-pagination
+

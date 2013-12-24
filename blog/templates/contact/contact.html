@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<div class="page-header">
+  <h1>Formulario para contato</h1>  
+</div>
+<form action='.' method='POST' class='form-horizontal'>{% csrf_token %}
+	{% for field in form %}		
+		<div class="form-group {% if field.errors %}has-error{% endif %}">
+			<label for="id_{{ field.name }}" class="col-sm-2 control-label">{{ field.label }}:</label>
+			<div class="{% if field.name == 'captcha' %}col-xs-3{% else %}col-sm-10{% endif %}">
+		      {{ field }}
+		      {% if field.errors %}
+		      	  <span class="help-block">{{ field.errors|join:","}}</span>
+		      {% endif %}
+		    </div>
+		</div>		
+	{% endfor %}
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type='submit' class="btn btn-primary btn-lg">Enviar</button>
+		</div>
+	</div>
+
+{% endblock container %}

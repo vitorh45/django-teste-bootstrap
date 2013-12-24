@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load pagination_tags %}
+{% load thumbnail %}
+{% block container %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        {% for post in posts_highlight %}
+        <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>  
+        {% endfor %}      
+      </ol>
+      <div class="carousel-inner">
+        {% for post in posts_highlight %}
+        <div class="item {% if forloop.first %}active{% endif %}">
+          {% thumbnail post.image 900x500 crop as imagem %}
+          <img src="{{ MEDIA_URL }}{{ imagem }}" alt="{{ post.title }}">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>{{ post.title }}</h1>
+              <p>{{ post.summary }}</p>
+              <p><a class="btn btn-lg btn-primary" href="{% url 'post_detail' post.slug %}" role="button">Leia mais</a></p>
+            </div>
+          </div>
+        </div>        
+        {% endfor %}
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+    {% autopaginate posts 9 %}
+
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-lg-4">
+          <h2>{{ post.title }}</h2>  
+          <small>Postado por <span class='text-primary'>{{ post.author }}</span> em &nbsp<span class="glyphicon glyphicon-calendar"></span> {{ post.creation_date|date:"d/m/Y"}}</small>        
+          <p>{{ post.summary }}</p>
+          <p><a class="btn btn-primary" href="{% url 'post_detail' post.slug %}" role="button">Leia mais &raquo;</a></p>
+        </div>        
+        {% endfor %}
+      </div>
+
+      {% paginate %}
+      
+
+{% endblock container %}

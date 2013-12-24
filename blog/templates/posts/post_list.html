@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load pagination_tags %}
+{% block container %}
+<div class='jumbotron'>
+	<h1>Blog</h1>
+</div>
+
+{% autopaginate posts 6 %}
+{% for post in posts %}
+<div class="row">
+  <div class="col-xs-6 col-md-3">
+    <div class="thumbnail">
+    	{% thumbnail post.image 300x200 crop as imagem %}
+      <img src="{{ MEDIA_URL }}{{ imagem }}" alt="{{ post.title }}">      
+    </div>
+  </div>
+  <div>
+  	<h4>{{ post.title }}</h4>
+  	<p>{{ post.content|truncatewords:"60" }}</p>
+  	<p><a class="btn btn-sm btn-primary" href="{% url 'post_detail' post.slug %}" role="button">Leia mais</a></p>
+  	<small>Postado por <span class='text-primary'>{{ post.author }}</span> em &nbsp<span class="glyphicon glyphicon-calendar"></span> {{ post.creation_date|date:"d/m/Y"}}</small>
+  </div>
+</div>
+{% endfor %}
+{% paginate %}
+{% endblock container %}
