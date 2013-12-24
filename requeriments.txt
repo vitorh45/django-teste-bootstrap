@@ -8,4 +8,5 @@ django-grappelli
 django-taggit
 pillow
 django-pagination
+django-debug-toolbar
 

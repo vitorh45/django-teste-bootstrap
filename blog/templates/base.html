@@ -47,8 +47,18 @@
             <li><a href="{% url 'post_list' %}">Blog</a></li>
             <li><a href="{% url 'contact' %}">Contato</a></li>            
           </ul>
+
+          <form class="navbar-form navbar-right" role="form" method='GET' action="/busca">
+            <div class="form-group">
+              <input name="q" type="text" placeholder="Digite aqui a(s) palavra(s)" class="form-control">
+            </div>            
+            <button type="submit" class="btn btn-success">Buscar</button>
+          </form>
+          
         </div><!--/.nav-collapse -->
+
       </div>
+        
     </header>
 
     <div class="container">

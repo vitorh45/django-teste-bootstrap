@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block container %}
+
+{% for post in posts %}
+{{ post.title}}<br>
+{{ post.category }}
+{% endfor %}
+
+{% endblock container %}

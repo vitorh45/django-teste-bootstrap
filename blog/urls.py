@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^contato/', 'contact.views.contact', name='contact'),
     url(r'^blog/', include('posts.urls')),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^busca/$', 'core.views.search', name='search'),
     url(r'^grappelli', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
