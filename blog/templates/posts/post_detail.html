@@ -2,12 +2,60 @@
 {% load thumbnail %}
 {% block container %}
 
-<div class="page-header">
-  <h1>{{ post.title }}</h1>
-  <small>Postado por <span class='text-primary'>{{ post.author }}</span> em &nbsp<span class="glyphicon glyphicon-calendar"></span> {{ post.creation_date|date:"d/m/Y"}}</small>        
-</div>
-{% thumbnail post.image 400x300 crop as imagem %}
-<p><img src='{{ MEDIA_URL }}{{ imagem }}' alt='{{ post.title }}' class='pull-left img-thumbnail margin-text'>
-{{ post.content|linebreaksbr }}
-</p>
+<div class='row'>
+	<div class="col-md-9">
+		<div class="page-header">
+		  <h1>{{ post.title }}</h1>
+		  <small>Postado por <span class='text-primary'>{{ post.author }}</span> em &nbsp<span class="glyphicon glyphicon-calendar"></span> {{ post.creation_date|date:"d/m/Y"}}</small>        
+		</div>
+		<div class='row'>
+		{% thumbnail post.image 400x300 crop as imagem %}
+		<p><img src='{{ MEDIA_URL }}{{ imagem }}' alt='{{ post.title }}' class='pull-left img-thumbnail margin-text'>
+		{{ post.content|linebreaksbr }}
+		</p>
+		</div>
+
+		<div class="row">
+			<div class='col-md-7'>
+				<h2>Comentários <span class='badge btn-primary'>{{ comments.count }}</span></h2>
+				{% for comment in comments %}
+				<div class="panel panel-primary">
+				  <div class="panel-heading padding-heading-comment">
+				    <strong>{{ comment.user_name }}</strong> <span class='pull-right'>postado em <span class="glyphicon glyphicon-calendar"></span> {{ comment.submit_date|date:"d/m/Y"}}</span>
+				  </div>
+				  <div class="panel-body padding-body-comment">{{ comment.comment}}</div>
+				</div>				
+				{% endfor %}
+			</div>
+			<div class='col-md-4 pull-right'>
+				<div class="page-header">
+  					<h2>Envie seu comentario</h2>  
+				</div>
+				<form action='.' method='POST'>{% csrf_token %}
+				{% for field in form %}		
+					<div class="form-group {% if field.errors %}has-error{% endif %}">
+						<label for="id_{{ field.name }}" >{{ field.label }}:</label>						
+						{{ field }}
+						{% if field.errors %}
+							<span class="help-block">{{ field.errors|join:","}}</span>
+						{% endif %}					    
+					</div>		
+				{% endfor %}
+				<div class="form-group">					
+					<button type='submit' class="btn btn-primary btn-lg">Enviar</button>					
+				</div>
+			</div >
+		</div>
+	</div>	
+	<div class='col-md-3 side-bar-posts'>
+		<div class='panel panel-info'>
+			<div class='panel-heading'><h3>Posts relacionados</h3></div>
+			<div class='panel-body'>				
+				{% for post_rel in posts_related %}					
+					<h4><a>{{ post_rel.title }}</a></h4><br>
+				{% endfor %}				
+			</div>
+		</div>
+	</div>
+</div >
 {% endblock container %}

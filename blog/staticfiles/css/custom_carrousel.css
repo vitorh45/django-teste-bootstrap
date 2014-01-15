@@ -131,6 +131,18 @@ body {
   margin-top: -9px;  
 }
 
+/* side bar dos posts relacionados */
+.side-bar-posts {
+  margin-top:115px; 
+}
+
+.padding-heading-comment {
+  padding: 5px 10px;
+}
+
+.padding-body-comment{
+  padding:10px;
+}
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 

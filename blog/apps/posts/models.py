@@ -1,5 +1,7 @@
 #coding> utf-8
 from django.db import models
+from django.contrib.contenttypes import generic
+from comments.models import Comment
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 
@@ -10,6 +12,11 @@ class Category(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	class Meta:
+		verbose_name = 'Category'
+		verbose_name_plural = 'Categories'
+
 
 class Post(models.Model):
 
@@ -26,9 +33,10 @@ class Post(models.Model):
 	summary = models.CharField(u'Resumo', max_length=255)
 	content = models.TextField(u'Conteudo')
 	tags = TaggableManager()
-	image = models.ImageField(u'Imagem', upload_to='/posts/%Y/%m/%d')
+	image = models.ImageField(u'Imagem', upload_to='posts/%Y/%m/%d')
 	author = models.CharField(u'Autor', max_length=100)
 	status = models.CharField(u'Status', choices=STATUS_CHOICES, max_length=10)
+	comments = generic.GenericRelation(Comment, content_type_field='content_type', object_id_field='object_pk')
 	is_highlight = models.BooleanField(u'E destaque', default=False)
 	creation_date = models.DateTimeField(u'Data da criacao', auto_now_add=True)
 	update_date = models.DateTimeField(u'Data de update', auto_now=True)

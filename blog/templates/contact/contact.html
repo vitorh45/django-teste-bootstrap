@@ -8,7 +8,7 @@
 	{% for field in form %}		
 		<div class="form-group {% if field.errors %}has-error{% endif %}">
 			<label for="id_{{ field.name }}" class="col-sm-2 control-label">{{ field.label }}:</label>
-			<div class="{% if field.name == 'captcha' %}col-xs-3{% else %}col-sm-10{% endif %}">
+			<div class="{% if field.name == 'captcha' %}col-xs-3{% else %}col-sm-7{% endif %}">
 		      {{ field }}
 		      {% if field.errors %}
 		      	  <span class="help-block">{{ field.errors|join:","}}</span>

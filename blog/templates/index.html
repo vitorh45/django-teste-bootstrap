@@ -13,7 +13,7 @@
       <div class="carousel-inner">
         {% for post in posts_highlight %}
         <div class="item {% if forloop.first %}active{% endif %}">
-          {% thumbnail post.image 900x500 crop as imagem %}
+          {% thumbnail post.image 1350x500 crop as imagem %}
           <img src="{{ MEDIA_URL }}{{ imagem }}" alt="{{ post.title }}">
           <div class="container">
             <div class="carousel-caption">
@@ -45,4 +45,4 @@
       {% paginate %}
       
 
-{% endblock container %}
+{% endblock container %}7
